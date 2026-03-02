@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner Marketing: Prerender.io Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FFFFFF;
+    --surface: #F7F8FA;
+    --surface-2: #F0F2F5;
+    --surface-3: #E8EBF0;
+    --text: #1A1D23;
+    --text-secondary: #4A5168;
+    --muted: #8E96AD;
+    --border: #E2E6EE;
+    --border-dark: #D0D6E2;
+    --accent: #27AE60;
+    --accent-light: #F0FAF4;
+    --accent-border: #B8E6CC;
+    --accent-dark: #1E8A4A;
+    --gray-light: #F7F8FA;
+    --tag-bg: #F0F2F5;
+    --divider: #E2E6EE;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 48px 80px;
+  }
+
+  /* ── HEADER ──────────────────────────────────────── */
+  .doc-header {
+    margin-bottom: 40px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .doc-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    background: var(--accent-light);
+    border: 1px solid var(--accent-border);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  .doc-title {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text);
+    letter-spacing: -0.6px;
+    margin-bottom: 10px;
+  }
+
+  .doc-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 12.5px;
+    color: var(--muted);
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .doc-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* ── FRAMING BLOCK ───────────────────────────────── */
+  .framing {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .framing strong { color: var(--text); }
+
+  /* ── SECTION HEADERS ─────────────────────────────── */
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .section-subtitle {
+    font-size: 11px;
+    color: var(--accent-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 600;
+    margin-top: 2px;
+    opacity: 0.8;
+  }
+
+  /* ── PARTNER CARDS ───────────────────────────────── */
+  .partner-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .partner-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .partner-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 16px 20px 12px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+  }
+
+  .partner-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .partner-url {
+    font-size: 11.5px;
+    color: var(--accent-dark);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .partner-url:hover { text-decoration: underline; }
+
+  .partner-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .tag {
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+
+  .tag-solution { background: #EEF4FF; color: #3366CC; border: 1px solid #C5D8FF; }
+  .tag-tech     { background: #F5F0FF; color: #6B3FA0; border: 1px solid #DDD0F5; }
+  .tag-geo      { background: var(--accent-light); color: var(--accent-dark); border: 1px solid var(--accent-border); }
+
+  .partner-body {
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .partner-col:first-child {
+    padding-right: 20px;
+    border-right: 1px solid var(--border);
+  }
+
+  .partner-col:last-child { padding-left: 20px; }
+
+  .col-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    background: var(--accent-light);
+    border: 1px solid var(--accent-border);
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-bottom: 9px;
+  }
+
+  .col-text {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  .partner-risk {
+    padding: 10px 20px;
+    background: #FFFBF0;
+    border-top: 1px solid #F5E4A0;
+    font-size: 12.5px;
+    color: #92600A;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .risk-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+
+  .partner-card.tech { border-color: #DDD0F5; }
+  .partner-card.tech .partner-card-header { background: #F8F5FF; border-bottom-color: #DDD0F5; }
+
+  /* ── ACTIVATION ───────────────────────────────────── */
+  .activation-intro {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .phase-label {
+    grid-column: 1 / -1;
+    background: var(--accent-light);
+    padding: 7px 16px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    border-top: 1px solid var(--accent-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .phase-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── METRICS ─────────────────────────────────────── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .metric-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    background: var(--bg);
+  }
+
+  .metric-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 4px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  /* ── BLOG POST ───────────────────────────────────── */
+  .blog-wrapper {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .blog-chrome {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .chrome-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  .chrome-bar {
+    flex: 1;
+    height: 22px;
+    background: var(--surface-2);
+    border-radius: 4px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .blog-post { padding: 28px 32px; background: white; }
+
+  .blog-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-dark);
+    margin-bottom: 10px;
+  }
+
+  .blog-title {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--text);
+    letter-spacing: -0.4px;
+    margin-bottom: 14px;
+  }
+
+  .blog-meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .blog-body { font-size: 14px; line-height: 1.75; color: var(--text-secondary); }
+  .blog-body p { margin-bottom: 14px; }
+  .blog-body h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 8px; }
+
+  .blog-cta { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+
+  .cta-btn {
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: default;
+  }
+
+  .cta-primary { background: var(--accent); color: white; }
+  .cta-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+
+  /* ── SOURCES ─────────────────────────────────────── */
+  .sources { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+
+  .sources-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-dark);
+    margin-bottom: 10px;
+  }
+
+  .sources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+
+  .source-item { font-size: 11.5px; color: var(--muted); display: flex; gap: 6px; align-items: flex-start; }
+
+  .source-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-dark);
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  .source-item a { color: var(--accent-dark); text-decoration: none; word-break: break-all; }
+  .source-item a:hover { text-decoration: underline; }
+
+  /* ── CALLOUT ─────────────────────────────────────── */
+  .callout {
+    border-radius: 8px;
+    padding: 13px 16px;
+    font-size: 13px;
+    line-height: 1.65;
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .callout.green { background: var(--accent-light); color: #1A6B3A; border: 1px solid var(--accent-border); }
+  .callout.blue  { background: #EEF4FF; color: #2A4FA0; border: 1px solid #C5D8FF; }
+
+  .callout-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+  .callout-text strong { display: block; margin-bottom: 3px; color: var(--text); }
+
+  /* ── DIVIDER ─────────────────────────────────────── */
+  .divider { height: 1px; background: var(--border); margin: 36px 0; }
+
+  /* ── PRINT ───────────────────────────────────────── */
+  @media print {
+    body { padding: 36px 40px; font-size: 12.5px; }
+    .doc-title { font-size: 22px; }
+    .section-title { font-size: 15px; }
+    .partner-card, .blog-wrapper { break-inside: avoid; }
+    .partner-grid { gap: 14px; }
+    .section { margin-bottom: 30px; }
+    .blog-post { padding: 20px 24px; }
+    .blog-title { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── DOCUMENT HEADER ───────────────────────────────────── -->
+<div class="doc-header">
+  <div class="doc-label">Case Study</div>
+  <div class="doc-title">Partner Marketing Manager at Prerender.io</div>
+  <div style="font-size:14px; color:var(--muted); margin-top:6px;">
+    A grounded strategy for partner identification, activation, and communication.
+  </div>
+  <div class="doc-meta">
+    <span>📍 Role: Partner Marketing Manager</span>
+    <span>🏢 Prerender.io / saas.group</span>
+    <span>📅 March 2026</span>
+    <span>🎯 Primary KPI: Partner-sourced revenue</span>
+    <span>✍️ Made by: Nané Martirosyan</span>
+  </div>
+</div>
+
+<!-- ── FRAMING ───────────────────────────────────────────── -->
+  <div class="framing">
+  <strong>Starting point I'm working from:</strong> Prerender.io has 14 solution partners and a handful of technology partners including Netlify, Oncrawl, OtterlyAI, and Virto Commerce, all signed in the past 10 months. The goal over the next 12–18 months is to build on that foundation: introducing the structure, incentives, and activation processes that turn a strong and growing partner list into a consistent, scalable acquisition channel to drive partner-sourced revenue.
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TASK 1: PARTNER IDENTIFICATION
+     ══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div>
+      <div class="section-title">Partner Identification, Qualification &amp; Outreach</div>
+      <div class="section-subtitle">3 Solution Partners · 1 Technology Partner</div>
+    </div>
+  </div>
+
+  <div style="font-size:13.5px; color:var(--text-secondary); line-height:1.7; margin-bottom:18px;">
+    The selection logic was straightforward: strong solution partners are those who regularly encounter the problem Prerender solves: not occasionally, but as a consistent part of their client work. They serve the kinds of companies Prerender is built for (mid-market to enterprise, large sites, JavaScript-heavy), and they have a clear reason to recommend a solution rather than trying to build one themselves. Generalist agencies rarely meet that bar. Specialists do.
+  </div>
+
+  <div style="background:var(--accent-light); border:1px solid var(--accent-border); border-radius:10px; padding:18px 20px; margin-bottom:24px;">
+    <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.09em; color:var(--accent); margin-bottom:12px;">Standard Partner Identification & Outreach Flow</div>
+    <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:0; text-align:center; position:relative;">
+      <div style="padding:0 8px;">
+        <div style="background:var(--accent); color:white; border-radius:6px; padding:8px 6px; font-size:12px; font-weight:700; margin-bottom:6px;">1</div>
+        <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:3px;">Qualify</div>
+        <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.5;">Evaluate against Ideal Partner Profile: client base, ICP overlap, problem frequency</div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:16px; padding-bottom:28px;">→</div>
+      <div style="padding:0 8px;">
+        <div style="background:var(--accent); color:white; border-radius:6px; padding:8px 6px; font-size:12px; font-weight:700; margin-bottom:6px;">2</div>
+        <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:3px;">Reach Out</div>
+        <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.5;">Personalized outreach to the decision maker, specific to their work, not a generic pitch</div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:16px; padding-bottom:28px;">→</div>
+      <div style="padding:0 8px;">
+        <div style="background:var(--accent); color:white; border-radius:6px; padding:8px 6px; font-size:12px; font-weight:700; margin-bottom:6px;">3</div>
+        <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:3px;">Discovery Call</div>
+        <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.5;">Understand their client base and workflow to confirm the ICP overlap is real before proposing anything</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:0; text-align:center; margin-top:12px;">
+      <div style="padding:0 8px; grid-column:1;">
+        <div style="background:var(--accent); color:white; border-radius:6px; padding:8px 6px; font-size:12px; font-weight:700; margin-bottom:6px;">4</div>
+        <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:3px;">Partnership Deck</div>
+        <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.5;">Share what Prerender offers, what the partner gets, and the problems we solve together</div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:16px; padding-bottom:28px;">→</div>
+      <div style="padding:0 8px; grid-column:3;">
+        <div style="background:var(--accent); color:white; border-radius:6px; padding:8px 6px; font-size:12px; font-weight:700; margin-bottom:6px;">5</div>
+        <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:3px;">Agreement</div>
+        <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.5;">If there's mutual fit, sign the partnership agreement and move directly into onboarding</div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:16px; padding-bottom:28px;">→</div>
+      <div style="padding:0 8px; grid-column:5;">
+        <div style="background:var(--accent); color:white; border-radius:6px; padding:8px 6px; font-size:12px; font-weight:700; margin-bottom:6px;">✓</div>
+        <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:3px;">Onboarding</div>
+        <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.5;">Hand off to activation plan. Task 2 takes over from here</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="partner-grid">
+
+    <!-- PARTNER 1: ONELY -->
+    <div class="partner-card">
+      <div class="partner-card-header">
+        <div>
+          <div class="partner-name">Onely</div>
+          <a href="https://www.onely.com" class="partner-url" target="_blank">onely.com</a>
+        </div>
+        <div class="partner-tags">
+          <span class="tag tag-solution">Solution Partner</span>
+          <span class="tag tag-geo">Technical SEO</span>
+        </div>
+      </div>
+      <div class="partner-body">
+        <div class="partner-col">
+          <div class="col-label">Why they fit</div>
+          <div class="col-text">
+            Onely is a respected technical SEO agency globally, known specifically for their expertise in JavaScript and search visibility, which is exactly the problem Prerender solves. Their clients are enterprise brands with large, complex websites (eBay, IKEA, G2), and when Onely identifies a rendering issue during an audit, they need a solution to recommend. Prerender is the natural fit. The partnership formalizes a referral relationship that already makes sense organically.
+          </div>
+        </div>
+        <div class="partner-col">
+          <div class="col-label">Engagement approach</div>
+          <div class="col-text">
+            Since the company is small, reach out directly to Onely's founder on LinkedIn, they are publicly active and vocal about JavaScript SEO. Reference a relevant use case that has a touchpoint with Prerender's offering specifically in the opening message. The key selling point for Onely is that a referral agreement lets them close the loop on audits: instead of handing clients a problem without a solution, they can recommend Prerender as their vetted implementation partner. That strengthens their deliverable, not just their revenue.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTNER 2: StudioHawk -->
+    <div class="partner-card">
+      <div class="partner-card-header">
+        <div>
+          <div class="partner-name">StudioHawk</div>
+          <a href="https://studiohawk.com" class="partner-url" target="_blank">studiohawk.com</a>
+        </div>
+        <div class="partner-tags">
+          <span class="tag tag-solution">Solution Partner</span>
+          <span class="tag tag-geo">SEO Agency</span>
+        </div>
+      </div>
+      <div class="partner-body">
+        <div class="partner-col">
+          <div class="col-label">Why they fit</div>
+          <div class="col-text">
+            StudioHawk is an SEO-only agency founded in Melbourne in 2015 by Harry Sanders, with 80-100+ specialists across offices in Australia, the UK, and Atlanta. They do not offer paid media, social, or web development: SEO is the entire business. Named clients include Officeworks, QuickBooks APAC, and The Good Guys, most of them non-technical buyers who act directly on StudioHawk's recommendations. On the Officeworks engagement, StudioHawk documented pre-rendering React to make JavaScript SEO-friendly, and they have a published blog post explicitly recommending Prerender.io as a reliable solution for dynamic rendering. They run a dedicated headless SEO service and have recently launched an AI SEO offering. Importantly, they operate an active partner program that explicitly invites SaaS and tech companies, with Semrush already in as a named partner.
+          </div>
+        </div>
+        <div class="partner-col">
+          <div class="col-label">Engagement approach</div>
+          <div class="col-text">
+            Contact StudioHawk through their partner program directly and reach out to their team on LinkedIn. Lead with the fact that StudioHawk already recommends Prerender.io in their published content: open by referencing that and asking whether formalizing it makes sense. Position Prerender as a concrete fix they can hand clients on React, Vue, or Angular sites where Googlebot is struggling to index content. Low implementation effort on their end, clear value-add to an audit they are already delivering, and a named SaaS partner arrangement that fits the program they are actively building.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTNER 3: FocusReactive -->
+    <div class="partner-card">
+      <div class="partner-card-header">
+        <div>
+          <div class="partner-name">FocusReactive</div>
+          <a href="https://focusreactive.com" class="partner-url" target="_blank">focusreactive.com</a>
+        </div>
+        <div class="partner-tags">
+          <span class="tag tag-solution">Solution Partner</span>
+          <span class="tag tag-geo">Web Dev Agency</span>
+        </div>
+      </div>
+      <div class="partner-body">
+        <div class="partner-col">
+          <div class="col-label">Why they fit</div>
+          <div class="col-text">
+            Where Onely and StudioHawk diagnose rendering problems, FocusReactive builds the sites that have them. They work almost exclusively with Next.js and React, and hold certified partnerships with seven headless CMSes: Sanity, Storyblok, Contentful, Payload, DatoCMS, Directus, and Hygraph, as well as a Vercel Solution Partner designation. Named clients include EasyPark (35 domains, 18 languages), Tipico, Betway, and Secret Escapes. They sell a productized Next.js SEO Audit service and recently announced a partnership with Wordify specifically to address AI search visibility for enterprise brands. Every site they deliver is a potential Prerender customer.
+          </div>
+        </div>
+        <div class="partner-col">
+          <div class="col-label">Engagement approach</div>
+          <div class="col-text">
+            The entry point here is practical rather than strategic: offer their team an extended free trial on an active client project and frame it as a proof of concept. If it works for the client, it becomes part of their standard recommendation going forward.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TECH PARTNER: STORYBLOK -->
+    <div class="partner-card tech">
+      <div class="partner-card-header">
+        <div>
+          <div class="partner-name">Storyblok ✦ Recommended Technology Partner</div>
+          <a href="https://storyblok.com" class="partner-url" target="_blank">storyblok.com</a>
+        </div>
+        <div class="partner-tags">
+          <span class="tag tag-tech">Technology Partner</span>
+          <span class="tag tag-geo">Headless CMS</span>
+        </div>
+      </div>
+      <div class="partner-body">
+        <div class="partner-col">
+          <div class="col-label">Why Storyblok</div>
+          <div class="col-text">
+            Storyblok is one of the fastest-growing venture-backed headless CMS platforms, used by brands like Virgin Media O2, Oatly, and TomTom to build JavaScript-heavy sites, exactly the kind of sites that need Prerender. Projects built on Storyblok are potential Prerender customers. Storyblok runs an established Partner Program designed primarily for agencies and solution partners, but they have also built a genuine technology ecosystem, integrating with tools like Vercel and Algolia, and they have a documented history of co-building real projects with technology partners and publishing those as case studies. They understand the value of ecosystem partnerships and have the infrastructure to list and promote integrations. They also share Prerender's concern around AI search visibility: OtterlyAI, a company already in Prerender's own partner ecosystem, is part of the same space Storyblok is actively watching. The shared context makes the pitch straightforward: Storyblok handles the content and delivery layer; Prerender ensures that content is fully visible to search engines and AI crawlers.
+          </div>
+        </div>
+        <div class="partner-col">
+          <div class="col-label">Engagement approach</div>
+          <div class="col-text">
+            Reach out directly to Storyblok's partnerships or ecosystem team and lead with the Otterly.AI connection. Storyblok and Prerender already share a mutual partner in the AI search space, which makes the outreach warmer than a cold approach. The pitch centers on a clear gap Storyblok clients face: their content is structured and beautifully managed, but if the frontend is JavaScript-heavy, AI crawlers and search engines may still not be able to read it. Prerender closes that gap without touching the CMS or the frontend. The goal in the first phase is a listed integration in Storyblok's technology ecosystem and a co-authored piece of content targeting their developer and marketer audience on AI search visibility.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /partner-grid -->
+</div>
+
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TASK 2: ACTIVATION PLAN
+     ══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div>
+      <div class="section-title">6-Month Solution Partner Activation Plan</div>
+      <div class="section-subtitle">Sign → Certify → Announce → Activate → Keep The Momentum</div>
+    </div>
+  </div>
+
+  <div class="activation-intro">
+    This 6-month activation plan is designed to move partners from signed to revenue-producing by building the enablement, habits, and joint motion needed to turn partnerships into a repeatable, scalable acquisition channel, not just an opportunistic referral program. Partners need to understand the product deeply enough to demo it confidently, and understand the sales motion well enough to identify the right clients, frame the value proposition, communicate the unique selling points, and handle objections. Everything after that is about keeping momentum and making it easy for partners to expand the offering across a broader part of their client base.
+  </div>
+
+  <!-- SINGLE FLOW PHASES -->
+  <div style="display:flex; flex-direction:column; gap:0; border:1px solid var(--border); border-radius:10px; overflow:hidden;">
+
+    <!-- PHASE 1 -->
+    <div class="phase-label" style="border-top:none;">
+      <div class="phase-dot"></div>
+      Phase 1: Onboarding &amp; Agreement &nbsp;·&nbsp; Weeks 1–3
+    </div>
+    <div style="padding:16px 20px; font-size:13px; color:var(--text-secondary); line-height:1.65; border-top:1px solid var(--border);">
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Once the partnership agreement is signed, send a welcome email with access to the partner resource repository: product overview, ICP guide, battle card, sales enablement materials, training materials, and ROI calculator</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Partner completes a short expertise survey so Prerender can personalise enablement based on their tech stack, client profile, and service focus</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Kick-off call in the first week: walk through the program, demo the product, communicate the ICP and USP, and align on a shared goal for the first 90 days</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Prerender team creates the partner's directory listing, ready to go live at announcement</li>
+      </ul>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-label">
+      <div class="phase-dot"></div>
+      Phase 2: Certification &nbsp;·&nbsp; Weeks 3–8
+    </div>
+    <div style="padding:16px 20px; font-size:13px; color:var(--text-secondary); line-height:1.65; border-top:1px solid var(--border);">
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Partner works through the certification program: courses covering product, ICP, sales motion, and objection handling, and passes the final assessment</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>A check-in midway through certification to answer questions and keep momentum; ideally two team members certified, not just one (one sales certification and one technical)</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>On completion, partner is added to Prerender's certified partner list and the partnership badge goes live on their site</li>
+      </ul>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-label">
+      <div class="phase-dot"></div>
+      Phase 3: Announcement &nbsp;·&nbsp; Once Certified
+    </div>
+    <div style="padding:16px 20px; font-size:13px; color:var(--text-secondary); line-height:1.65; border-top:1px solid var(--border);">
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Joint blog post published simultaneously on both sites, co-branded social posts, and where applicable a shared email blast, all on the same day</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Partner directory listing goes live and the partnership is publicly visible on both sides</li>
+      </ul>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase-label">
+      <div class="phase-dot"></div>
+      Phase 4: Early Revenue Support &nbsp;·&nbsp; Months 2–3
+    </div>
+    <div style="padding:16px 20px; font-size:13px; color:var(--text-secondary); line-height:1.65; border-top:1px solid var(--border);">
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Light-touch follow-up after announcement to check on warm prospects and answer any deal-related questions, via email or a short call upon request</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Prerender joins sales calls on request during the first 90 days; this is a short-term support mechanism, not a permanent arrangement; the goal is for partners to run demos independently as they gain confidence</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Demo script, recorded walkthrough, and sandbox account provided so partners can run product demos without needing Prerender on the call</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Extended trial available at partner manager discretion for qualified, high-value prospects, not a default offer for every referral</li>
+      </ul>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase-label">
+      <div class="phase-dot"></div>
+      Phase 5: Co-Marketing &amp; Growth &nbsp;·&nbsp; Months 2–6+
+    </div>
+    <div style="padding:16px 20px; font-size:13px; color:var(--text-secondary); line-height:1.65; border-top:1px solid var(--border);">
+
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Around month 2–3, begin planning the first co-marketing initiative</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Hold a call with the partner to showcase the co-marketing playbook: available formats (events, webinars, ebooks, co-branded service campaigns, guest blog posts, case studies, podcast), mutual benefits, MDF access (not yet in place), and the process for campaign creation</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Pick a format that suits the partner, agree on a topic aligned with Prerender's strategy, and set a launch date</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>MDF available for approved activities; regular email check-in to review what's working and what to prioritise next</li>
+      </ul>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="phase-label">
+      <div class="phase-dot"></div>
+      Phase 6: Partner Momentum &amp; Reactivation &nbsp;·&nbsp; Ongoing
+    </div>
+    <div style="padding:16px 20px; font-size:13px; color:var(--text-secondary); line-height:1.65; border-top:1px solid var(--border);">
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Segment partners monthly into three buckets: <strong>Active</strong>, <strong>At Risk</strong>, and <strong>Inactive</strong>, based on referrals, pipeline movement, and co-marketing participation</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>For <strong>Inactive</strong> partners: run a reactivation outreach sequence: share one relevant narrative, propose one specific co-marketing option from the playbook, and ask for a single next action with a deadline</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>For <strong>At Risk</strong> partners: run a quick reset call to identify blockers, re-align on ICP, and agree on one low-effort action to ship within the next 30 days</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>For <strong>Active</strong> partners: reinforce and scale: give them priority directory placement, faster deal support, early access to new messaging, and first pick of co-marketing slots</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Top up partner materials continuously: slide decks, social media post templates, fresh use cases, campaign templates, and ready-to-send outreach copy partners can reuse with clients</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Launch a partner newsletter on a consistent cadence to keep partners warm and active: product updates, new assets, partner wins, upcoming initiatives, co-marketing opportunities, program results achieved together, and what is next in the pipeline</li>
+        <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--muted);">→</span>Keep feedback loops tight: collect partner input on what is working, what is missing, and what would help them refer more, then update the playbook accordingly</li>
+      </ul>
+    </div>
+
+  </div><!-- /single flow -->
+
+  <!-- METRICS -->
+  <div style="margin-top:22px;">
+    <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:10px;">Key Activation Metrics</div>
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-value">Time-to-Deal</div>
+        <div class="metric-label">How fast a new partner generates their first referred deal.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">Co-Mkt Leads</div>
+        <div class="metric-label">Leads generated through joint campaigns per year.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">Activation Rate</div>
+        <div class="metric-label">Share of signed partners who refer a deal or run a co-marketing activity within 90 days.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">Pipeline</div>
+        <div class="metric-label">Partner-sourced pipeline value: total $ of open deals that originated from a partner referral or co-marketing lead.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">MRR %</div>
+        <div class="metric-label">Share of new monthly recurring revenue sourced by a partner. North star for the program's scorecard.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TASK 3: BLOG POST
+     ══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div>
+      <div class="section-title">Partnership Announcement: Blog Post</div>
+      <div class="section-subtitle">Prerender × Storyblok · Launch Announcement · ~430 words</div>
+    </div>
+  </div>
+
+  <div class="blog-wrapper">
+    <div class="blog-chrome">
+      <div class="chrome-dot" style="background:#ff5f57;"></div>
+      <div class="chrome-dot" style="background:#ffbd2e;"></div>
+      <div class="chrome-dot" style="background:#27c840;"></div>
+      <div class="chrome-bar">prerender.io/blog/prerender-storyblok-partnership</div>
+    </div>
+
+    <div class="blog-post">
+      <div class="blog-eyebrow">Partnership Announcement</div>
+      <div class="blog-title">Prerender.io Announces Strategic Partnership with Storyblok</div>
+      <div class="blog-meta">March 2026 · 2 min read</div>
+
+      <div class="blog-body">
+        <p>Prerender.io, one of the world's leading JavaScript rendering solutions, has announced a strategic partnership with Storyblok, a renowned headless CMS platform used by brands including Virgin Media O2, Oatly, and TomTom. Together, the two companies share a commitment to closing the gap between how content is created and how it is discovered by search engines and generative AI tools.</p>
+
+        <p>Headless CMS platforms like Storyblok have transformed the way teams build and deliver digital experiences. Yet as JavaScript-heavy frontends have become the standard, a meaningful discoverability gap has emerged, content that is beautifully structured and live for users remains inaccessible to search engines and AI crawlers like Googlebot, GPTBot, and ClaudeBot, which cannot reliably execute JavaScript.</p>
+
+        <h3>Bridging the Gap Between Content Management and Search Visibility</h3>
+
+        <p>Storyblok empowers marketers and developers to create, manage, and deliver structured content across any channel. Prerender.io ensures that content delivered through JavaScript-heavy frontends is rendered and fully visible to search engines and generative AI tools. Together, the two companies offer a complementary solution: Storyblok manages the content layer; Prerender manages the discoverability layer. When a search engine or AI crawler visits a Storyblok-powered site, Prerender intercepts the request and returns a complete HTML snapshot, ready for indexing, with no impact on the user experience and no changes required to the CMS or frontend.</p>
+
+                <p style="border-left:2px solid var(--accent); padding:12px 16px; margin:18px 0; color:var(--text); font-style:italic;">&ldquo;AI search is reshaping how audiences discover content, and our customers need confidence that what they build in Storyblok will be found. This partnership with Prerender.io addresses a genuine need, making sure nothing gets lost between content creation and search visibility.&rdquo; &mdash; [Storyblok Executive]</p>
+
+        <p>Both companies are committed to deepening this collaboration as AI-powered search continues to reshape content discovery. For teams building on Storyblok, the combination means content is not only structured and ready to publish, but fully visible to every crawler that matters.</p>
+
+        <div class="blog-about">
+          <p><strong>About Storyblok</strong> &mdash; Storyblok is a headless CMS that enables marketers and developers to create and deliver structured content across any channel. Trusted by 50,000+ customers worldwide, Storyblok helps teams build faster, more flexible digital experiences.</p>
+          <p><strong>About Prerender.io</strong> &mdash; Prerender.io is a technical SEO solution that helps websites ensure their JavaScript content is fully visible to search engines and generative AI tools. Used by thousands of companies worldwide, including Microsoft and Walmart, Prerender.io solves critical SEO challenges for modern websites.</p>
+        </div>
+      </div>
+
+      <div class="blog-cta">
+        <a href="https://prerender.io/partners/" class="cta-btn cta-primary" style="border-radius:50px;">Become a Partner</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
